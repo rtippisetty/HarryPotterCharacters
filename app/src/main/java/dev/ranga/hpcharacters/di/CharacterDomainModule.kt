@@ -6,10 +6,10 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dev.ranga.hpcharacters.domain.GetCachedCharactersUseCaseImpl
 import dev.ranga.hpcharacters.domain.GetCharacterUseCaseImpl
-import dev.ranga.hpcharacters.domain.ReloadCharactersUseCaseImpl
+import dev.ranga.hpcharacters.domain.LoadCharactersUseCaseImpl
 import dev.ranga.hpcharacters.exposedApi.GetCachedCharactersUseCase
 import dev.ranga.hpcharacters.exposedApi.GetCharacterUseCase
-import dev.ranga.hpcharacters.exposedApi.ReloadCharactersUseCase
+import dev.ranga.hpcharacters.exposedApi.LoadCharactersUseCase
 
 @Module
 @InstallIn(ViewModelComponent::class)
@@ -26,7 +26,7 @@ interface CharacterDomainModule {
 
     @Binds
     fun provideReloadCharactersUseCase(
-        impl: ReloadCharactersUseCaseImpl
-    ): ReloadCharactersUseCase
+        impl: LoadCharactersUseCaseImpl
+    ): LoadCharactersUseCase
 
 }

@@ -7,12 +7,22 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -34,10 +44,20 @@ fun CharactersListScreen(
     val characters = viewModel.characters.collectAsStateWithLifecycle().value
     val isLoading = viewModel.isLoading.collectAsStateWithLifecycle().value
 
+    var isSearchVisible by remember { mutableStateOf(false) }
+    var searchQuery by remember { mutableStateOf("") }
+
     CharactersListContent(
         characters = characters,
         isLoading = isLoading,
-        onCharacterClick = onCharacterClick
+        onCharacterClick = onCharacterClick,
+        isSearchVisible = isSearchVisible,
+        searchQuery = searchQuery,
+        onSearchClick = { isSearchVisible = !isSearchVisible },
+        onSearchQueryChange = { query ->
+            searchQuery = query
+            viewModel.searchCharacters(query)
+        },
     )
 }
 
@@ -46,12 +66,28 @@ fun CharactersListScreen(
 private fun CharactersListContent(
     characters: List<UICharacter>,
     isLoading: Boolean,
-    onCharacterClick: (String) -> Unit
+    onCharacterClick: (String) -> Unit,
+    isSearchVisible: Boolean = false,
+    searchQuery: String = "",
+    onSearchClick: () -> Unit = {},
+    onSearchQueryChange: (String) -> Unit = {},
 ) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Characters") }
+                title = {
+                    if (isSearchVisible) {
+                        SearchBar(searchQuery, onSearchQueryChange)
+                    } else {
+                        Text(text = "Characters")
+                        onSearchQueryChange("")
+                    }
+                },
+                actions = {
+                    IconButton(onClick = onSearchClick) {
+                        Icon(Icons.Filled.Search, contentDescription = "Search")
+                    }
+                }
             )
         },
     ) { paddingValues ->
@@ -77,6 +113,21 @@ private fun CharactersListContent(
             }
         }
     }
+}
+
+@Composable
+private fun SearchBar(
+    searchQuery: String,
+    onSearchQueryChange: (String) -> Unit
+) {
+    OutlinedTextField(
+        value = searchQuery,
+        onValueChange = onSearchQueryChange,
+        modifier = Modifier
+            .fillMaxWidth(),
+        placeholder = { Text("Search by name or actor") },
+        shape = RoundedCornerShape(8.dp)
+    )
 }
 
 @Composable
