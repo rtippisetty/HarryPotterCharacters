@@ -67,7 +67,12 @@ class CharactersListViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             _isLoading.value = true
-            loadCharactersUseCase.load()
+            try {
+                loadCharactersUseCase.load()
+            } catch (e: Exception) {
+                if (e is CancellationException) throw e
+                //log error
+            }
             _isLoading.value = false
         }
     }

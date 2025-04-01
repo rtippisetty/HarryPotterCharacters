@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
@@ -97,18 +98,23 @@ private fun CharactersListContent(
                 .fillMaxSize()
         ) {
             TableHeader()
-            LazyColumn(
-                modifier = Modifier.fillMaxSize()
-            ) {
-                item {
-                    if (isLoading) {
-                        Text("Loading...")
+            if (isLoading) {
+                Text("Loading...")
+            }
+            HorizontalDivider(thickness = 1.dp, color = Color.Gray)
+            if (characters.isEmpty()) {
+                Text(text = "No characters found")
+            } else {
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    items(
+                        items = characters,
+                        key = { character -> character.id }
+                    ) { character ->
+                        TableRow(character = character, onCharacterClick = onCharacterClick)
+                        HorizontalDivider(thickness = 1.dp, color = Color.Gray)
                     }
-                    HorizontalDivider(thickness = 1.dp, color = Color.Gray)
-                }
-                items(characters.size) { index ->
-                    TableRow(character = characters[index], onCharacterClick = onCharacterClick)
-                    HorizontalDivider(thickness = 1.dp, color = Color.Gray)
                 }
             }
         }
