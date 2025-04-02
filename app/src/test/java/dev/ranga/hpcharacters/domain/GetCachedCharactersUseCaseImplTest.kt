@@ -16,20 +16,20 @@ import org.junit.jupiter.api.assertThrows
 @OptIn(ExperimentalCoroutinesApi::class)
 class GetCachedCharactersUseCaseImplTest {
 
-    private lateinit var charactersRepository: CharactersRepository
+    private lateinit var hpCharactersRepository: HpCharactersRepository
     private lateinit var getCachedCharactersUseCase: GetCachedCharactersUseCaseImpl
 
     @BeforeEach
     fun setup() {
-        charactersRepository = mockk()
-        getCachedCharactersUseCase = GetCachedCharactersUseCaseImpl(charactersRepository)
+        hpCharactersRepository = mockk()
+        getCachedCharactersUseCase = GetCachedCharactersUseCaseImpl(hpCharactersRepository)
     }
 
     @Test
     fun `Successful retrieval of cached characters`() = runTest {
         // Arrange
         val cachedCharacters = hpCharacters
-        coEvery { charactersRepository.getCachedCharacters() } returns flowOf(cachedCharacters)
+        coEvery { hpCharactersRepository.getCachedCharacters() } returns flowOf(cachedCharacters)
 
         // Act
         val result = getCachedCharactersUseCase.get().toList()
@@ -41,7 +41,7 @@ class GetCachedCharactersUseCaseImplTest {
     @Test
     fun `Empty list retrieval from cache`() = runTest {
         // Arrange
-        coEvery { charactersRepository.getCachedCharacters() } returns flowOf(emptyList())
+        coEvery { hpCharactersRepository.getCachedCharacters() } returns flowOf(emptyList())
 
         // Act
         val result = getCachedCharactersUseCase.get().toList()
@@ -54,7 +54,7 @@ class GetCachedCharactersUseCaseImplTest {
     fun `Repository exception handling`() = runTest {
         // Arrange
         val exception = RuntimeException("Repository error")
-        coEvery { charactersRepository.getCachedCharacters() } throws exception
+        coEvery { hpCharactersRepository.getCachedCharacters() } throws exception
 
         // Act & Assert
         assertThrows<RuntimeException> {
@@ -66,7 +66,7 @@ class GetCachedCharactersUseCaseImplTest {
     fun `Multiple character retrieval`() = runTest {
         // Arrange
         val cachedCharacters = hpCharacters
-        coEvery { charactersRepository.getCachedCharacters() } returns flowOf(cachedCharacters)
+        coEvery { hpCharactersRepository.getCachedCharacters() } returns flowOf(cachedCharacters)
 
         // Act
         val result = getCachedCharactersUseCase.get().toList()
@@ -79,7 +79,7 @@ class GetCachedCharactersUseCaseImplTest {
     fun `Verify order of elements returned`() = runTest {
         // Arrange
         val cachedCharacters = hpCharacters
-        coEvery { charactersRepository.getCachedCharacters() } returns flowOf(cachedCharacters)
+        coEvery { hpCharactersRepository.getCachedCharacters() } returns flowOf(cachedCharacters)
 
         // Act
         val result = getCachedCharactersUseCase.get().toList().first()

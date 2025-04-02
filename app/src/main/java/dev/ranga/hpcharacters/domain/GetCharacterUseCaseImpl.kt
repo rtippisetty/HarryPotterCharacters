@@ -5,9 +5,9 @@ import dev.ranga.hpcharacters.exposedApi.GetCharacterUseCase
 import javax.inject.Inject
 
 class GetCharacterUseCaseImpl @Inject constructor(
-    private val charactersRepository: CharactersRepository
+    private val hpCharactersRepository: HpCharactersRepository
 ) : GetCharacterUseCase {
     override suspend fun getById(id: String): HpCharacter {
-        return charactersRepository.getCharacterById(id)
+        return hpCharactersRepository.getCharacterById(id)
     }
 }

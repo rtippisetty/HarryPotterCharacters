@@ -3,17 +3,17 @@ package dev.ranga.hpcharacters.data
 import dev.ranga.hpcharacters.data.local.HpCharacterDao
 import dev.ranga.hpcharacters.data.mapper.CharacterModelMapper
 import dev.ranga.hpcharacters.data.remote.HpCharacterService
-import dev.ranga.hpcharacters.domain.CharactersRepository
+import dev.ranga.hpcharacters.domain.HpCharactersRepository
 import dev.ranga.hpcharacters.domain.model.HpCharacter
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class CharactersRepositoryImpl @Inject constructor(
+class HpCharactersRepositoryImpl @Inject constructor(
     private val hpCharacterService: HpCharacterService,
     private val hpCharacterDao: HpCharacterDao,
     private val characterMapper: CharacterModelMapper,
-) : CharactersRepository {
+) : HpCharactersRepository {
 
     override fun getCachedCharacters(): Flow<List<HpCharacter>> {
         return hpCharacterDao.getAllCharacters().map { characters ->

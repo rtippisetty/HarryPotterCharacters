@@ -1,7 +1,6 @@
 package dev.ranga.hpcharacters.data
 
 import dev.ranga.hpcharacters.data.local.HpCharacterDao
-import dev.ranga.hpcharacters.data.local.HpCharacterEntity
 import dev.ranga.hpcharacters.data.mapper.CharacterModelMapper
 import dev.ranga.hpcharacters.data.model.HpCharacterDto
 import dev.ranga.hpcharacters.data.remote.HpCharacterService
@@ -31,14 +30,14 @@ class CharactersRepositoryImplTest {
     private lateinit var hpCharacterDao: HpCharacterDao
     private lateinit var hpCharacterService: HpCharacterService
     private lateinit var characterMapper: CharacterModelMapper
-    private lateinit var charactersRepository: CharactersRepositoryImpl
+    private lateinit var charactersRepository: HpCharactersRepositoryImpl
 
     @BeforeEach
     fun setup() {
         hpCharacterDao = mockk()
         hpCharacterService = mockk()
         characterMapper = mockk()
-        charactersRepository = CharactersRepositoryImpl(
+        charactersRepository = HpCharactersRepositoryImpl(
             hpCharacterDao = hpCharacterDao,
             hpCharacterService = hpCharacterService,
             characterMapper = characterMapper

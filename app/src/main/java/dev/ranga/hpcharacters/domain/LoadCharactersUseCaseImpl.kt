@@ -4,10 +4,10 @@ import dev.ranga.hpcharacters.exposedApi.LoadCharactersUseCase
 import javax.inject.Inject
 
 class LoadCharactersUseCaseImpl @Inject constructor(
-    private val charactersRepository: CharactersRepository
+    private val hpCharactersRepository: HpCharactersRepository
 ) : LoadCharactersUseCase {
 
     override suspend fun load() {
-        charactersRepository.loadCharacters()
+        hpCharactersRepository.loadCharacters()
     }
 }

@@ -6,10 +6,10 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class GetCachedCharactersUseCaseImpl @Inject constructor(
-    private val charactersRepository: CharactersRepository
+    private val hpCharactersRepository: HpCharactersRepository
 ) : GetCachedCharactersUseCase {
 
     override fun get(): Flow<List<HpCharacter>> {
-        return charactersRepository.getCachedCharacters()
+        return hpCharactersRepository.getCachedCharacters()
     }
 }

@@ -13,7 +13,7 @@ import dev.ranga.hpcharacters.exposedApi.LoadCharactersUseCase
 
 @Module
 @InstallIn(ViewModelComponent::class)
-interface CharacterDomainModule {
+interface HpCharacterDomainModule {
     @Binds
     fun provideGetCachedCharactersUseCase(
         impl: GetCachedCharactersUseCaseImpl
@@ -25,7 +25,7 @@ interface CharacterDomainModule {
     ): GetCharacterUseCase
 
     @Binds
-    fun provideReloadCharactersUseCase(
+    fun provideLoadCharactersUseCase(
         impl: LoadCharactersUseCaseImpl
     ): LoadCharactersUseCase
 

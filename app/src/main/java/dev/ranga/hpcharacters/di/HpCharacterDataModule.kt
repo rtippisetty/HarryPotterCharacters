@@ -10,12 +10,12 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import dev.ranga.hpcharacters.data.CharactersRepositoryImpl
+import dev.ranga.hpcharacters.data.HpCharactersRepositoryImpl
 import dev.ranga.hpcharacters.data.local.HpCharacterDao
 import dev.ranga.hpcharacters.data.local.HpCharactersDatabase
 import dev.ranga.hpcharacters.data.mapper.CharacterModelMapper
 import dev.ranga.hpcharacters.data.remote.HpCharacterService
-import dev.ranga.hpcharacters.domain.CharactersRepository
+import dev.ranga.hpcharacters.domain.HpCharactersRepository
 import dev.ranga.hpcharacters.BuildConfig
 import kotlinx.serialization.json.Json
 import okhttp3.Interceptor
@@ -26,7 +26,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object CharacterDataModule {
+object HpCharacterDataModule {
     private val defaultJson = Json { ignoreUnknownKeys = true }
 
     @Provides
@@ -38,8 +38,8 @@ object CharacterDataModule {
         hpCharacterService: HpCharacterService,
         hpCharacterDao: HpCharacterDao,
         hpCharacterMapper: CharacterModelMapper,
-    ): CharactersRepository {
-        return CharactersRepositoryImpl(
+    ): HpCharactersRepository {
+        return HpCharactersRepositoryImpl(
             hpCharacterService,
             hpCharacterDao,
             hpCharacterMapper
