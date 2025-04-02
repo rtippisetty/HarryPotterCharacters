@@ -3,7 +3,7 @@ package dev.ranga.hpcharacters.data.model
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CharacterDto(
+data class HpCharacterDto(
     val id: String,
     val name: String,
     val actor: String?,

@@ -78,11 +78,11 @@ private fun CharacterDetailContent(
     character: UICharacterDetail,
 ) {
     Column {
-        Text(text = character.name)
-        Text(text = character.actor)
-        Text(text = character.species)
-        Text(text = character.house)
-        Text(text = character.dateOfBirth)
+        Text(text = "Name : " + character.name)
+        Text(text = "Actor : " + character.actor)
+        Text(text = "Species : " + character.species)
+        Text(text = "House : " + character.house)
+        Text(text = "Date of Birth : " + character.dateOfBirth)
         Text(text = "isAlive: " + if(character.alive) "Yes" else "No")
         if(character.image.isNotEmpty()) {
             ImageView(

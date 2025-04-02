@@ -1,22 +1,22 @@
 package dev.ranga.hpcharacters.data.mapper
 
 import dev.ranga.hpcharacters.data.local.HpCharacterEntity
-import dev.ranga.hpcharacters.data.model.CharacterDto
+import dev.ranga.hpcharacters.data.model.HpCharacterDto
 import dev.ranga.hpcharacters.domain.model.HpCharacter
 import javax.inject.Inject
 
 class CharacterModelMapper @Inject constructor() {
 
-    fun mapDtoToEntity(characterDto: CharacterDto): HpCharacterEntity {
+    fun mapDtoToEntity(hpCharacterDto: HpCharacterDto): HpCharacterEntity {
         return HpCharacterEntity(
-            id = characterDto.id,
-            name = characterDto.name,
-            actor = characterDto.actor ?: "",
-            species = characterDto.species,
-            house = characterDto.house ?: "",
-            alive = characterDto.alive,
-            dateOfBirth = characterDto.dateOfBirth ?: "",
-            image = characterDto.image ?: ""
+            id = hpCharacterDto.id,
+            name = hpCharacterDto.name,
+            actor = hpCharacterDto.actor ?: "",
+            species = hpCharacterDto.species,
+            house = hpCharacterDto.house ?: "",
+            alive = hpCharacterDto.alive,
+            dateOfBirth = hpCharacterDto.dateOfBirth ?: "",
+            image = hpCharacterDto.image ?: ""
         )
     }
 
