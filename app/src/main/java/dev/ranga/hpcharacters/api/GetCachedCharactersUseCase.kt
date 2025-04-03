@@ -1,8 +1,8 @@
-package dev.ranga.hpcharacters.exposedApi
+package dev.ranga.hpcharacters.api
 
 import dev.ranga.hpcharacters.domain.model.HpCharacter
 import kotlinx.coroutines.flow.Flow
 
 fun interface GetCachedCharactersUseCase {
-    fun get(): Flow<List<HpCharacter>>
+    fun getAll(): Flow<List<HpCharacter>>
 }

@@ -32,7 +32,7 @@ class GetCachedCharactersUseCaseImplTest {
         coEvery { hpCharactersRepository.getCachedCharacters() } returns flowOf(cachedCharacters)
 
         // Act
-        val result = getCachedCharactersUseCase.get().toList()
+        val result = getCachedCharactersUseCase.getAll().toList()
 
         // Assert
         assertEquals(listOf(cachedCharacters), result)
@@ -44,7 +44,7 @@ class GetCachedCharactersUseCaseImplTest {
         coEvery { hpCharactersRepository.getCachedCharacters() } returns flowOf(emptyList())
 
         // Act
-        val result = getCachedCharactersUseCase.get().toList()
+        val result = getCachedCharactersUseCase.getAll().toList()
 
         // Assert
         assertEquals(listOf(emptyList<HpCharacter>()), result)
@@ -58,7 +58,7 @@ class GetCachedCharactersUseCaseImplTest {
 
         // Act & Assert
         assertThrows<RuntimeException> {
-            getCachedCharactersUseCase.get().toList()
+            getCachedCharactersUseCase.getAll().toList()
         }
     }
 
@@ -69,7 +69,7 @@ class GetCachedCharactersUseCaseImplTest {
         coEvery { hpCharactersRepository.getCachedCharacters() } returns flowOf(cachedCharacters)
 
         // Act
-        val result = getCachedCharactersUseCase.get().toList()
+        val result = getCachedCharactersUseCase.getAll().toList()
 
         // Assert
         assertEquals(listOf(cachedCharacters), result)
@@ -82,7 +82,7 @@ class GetCachedCharactersUseCaseImplTest {
         coEvery { hpCharactersRepository.getCachedCharacters() } returns flowOf(cachedCharacters)
 
         // Act
-        val result = getCachedCharactersUseCase.get().toList().first()
+        val result = getCachedCharactersUseCase.getAll().toList().first()
 
         // Assert
         assertEquals(cachedCharacters, result)

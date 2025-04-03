@@ -1,7 +1,7 @@
 package dev.ranga.hpcharacters.domain
 
 import dev.ranga.hpcharacters.domain.model.HpCharacter
-import dev.ranga.hpcharacters.exposedApi.GetCharacterUseCase
+import dev.ranga.hpcharacters.api.GetCharacterUseCase
 import javax.inject.Inject
 
 class GetCharacterUseCaseImpl @Inject constructor(

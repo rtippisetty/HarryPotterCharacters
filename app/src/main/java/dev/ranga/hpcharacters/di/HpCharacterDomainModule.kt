@@ -7,9 +7,9 @@ import dagger.hilt.android.components.ViewModelComponent
 import dev.ranga.hpcharacters.domain.GetCachedCharactersUseCaseImpl
 import dev.ranga.hpcharacters.domain.GetCharacterUseCaseImpl
 import dev.ranga.hpcharacters.domain.LoadCharactersUseCaseImpl
-import dev.ranga.hpcharacters.exposedApi.GetCachedCharactersUseCase
-import dev.ranga.hpcharacters.exposedApi.GetCharacterUseCase
-import dev.ranga.hpcharacters.exposedApi.LoadCharactersUseCase
+import dev.ranga.hpcharacters.api.GetCachedCharactersUseCase
+import dev.ranga.hpcharacters.api.GetCharacterUseCase
+import dev.ranga.hpcharacters.api.LoadCharactersUseCase
 
 @Module
 @InstallIn(ViewModelComponent::class)

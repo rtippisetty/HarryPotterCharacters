@@ -3,8 +3,32 @@ package dev.ranga.hpcharacters.testFixtures
 import dev.ranga.hpcharacters.data.local.HpCharacterEntity
 import dev.ranga.hpcharacters.data.model.HpCharacterDto
 import dev.ranga.hpcharacters.domain.model.HpCharacter
+import dev.ranga.hpcharacters.ui.model.UICharacter
+import dev.ranga.hpcharacters.ui.model.UICharacterDetail
+import dev.ranga.hpcharacters.ui.theme.GryffindorHouseColor
 
 object Fixtures {
+    val hpCharacterUI1 = UICharacter(
+        id = "1",
+        name = "Harry Potter",
+        actor = "Daniel Radcliffe",
+        species = "Human",
+        house = "Gryffindor",
+        houseColor = GryffindorHouseColor
+    )
+
+    val hpCharacterDetailUI1 = UICharacterDetail(
+        id = "1",
+        name = "Harry Potter",
+        actor = "Daniel Radcliffe",
+        species = "Human",
+        house = "Gryffindor",
+        houseColor = GryffindorHouseColor,
+        alive = true,
+        dateOfBirth = "25-12-2023",
+        image = "image_url",
+    )
+
     val hpCharacter1 = HpCharacter(
         id = "1",
         name = "Harry Potter",

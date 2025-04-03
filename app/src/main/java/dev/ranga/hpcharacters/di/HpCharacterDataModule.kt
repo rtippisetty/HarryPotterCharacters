@@ -1,7 +1,6 @@
 package dev.ranga.hpcharacters.di
 
 import android.content.Context
-import android.content.res.Resources
 import android.util.Log
 import androidx.room.Room
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
@@ -10,13 +9,13 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import dev.ranga.hpcharacters.BuildConfig
 import dev.ranga.hpcharacters.data.HpCharactersRepositoryImpl
 import dev.ranga.hpcharacters.data.local.HpCharacterDao
 import dev.ranga.hpcharacters.data.local.HpCharactersDatabase
 import dev.ranga.hpcharacters.data.mapper.CharacterModelMapper
 import dev.ranga.hpcharacters.data.remote.HpCharacterService
 import dev.ranga.hpcharacters.domain.HpCharactersRepository
-import dev.ranga.hpcharacters.BuildConfig
 import kotlinx.serialization.json.Json
 import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaType
@@ -28,9 +27,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object HpCharacterDataModule {
     private val defaultJson = Json { ignoreUnknownKeys = true }
-
-    @Provides
-    fun provideResource(@ApplicationContext context: Context): Resources = context.resources
 
     @Provides
     @Singleton
@@ -60,7 +56,7 @@ object HpCharacterDataModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(resources: Resources): OkHttpClient {
+    fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(createLoggingInterceptor())
             .build()
@@ -93,4 +89,5 @@ object HpCharacterDataModule {
             .fallbackToDestructiveMigration(true)
             .build()
     }
+
 }

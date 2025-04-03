@@ -17,3 +17,5 @@ fun String.formatDateToddMMMyy(): String {
     }
 }
 
+fun String.containsQuery(query: String): Boolean = contains(query, ignoreCase = true)
+

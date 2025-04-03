@@ -1,4 +1,4 @@
-package dev.ranga.hpcharacters.exposedApi
+package dev.ranga.hpcharacters.api
 
 import dev.ranga.hpcharacters.domain.model.HpCharacter
 

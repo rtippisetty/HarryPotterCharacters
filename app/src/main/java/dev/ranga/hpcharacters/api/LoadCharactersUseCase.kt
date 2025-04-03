@@ -1,4 +1,4 @@
-package dev.ranga.hpcharacters.exposedApi
+package dev.ranga.hpcharacters.api
 
 fun interface LoadCharactersUseCase {
     suspend fun load()
