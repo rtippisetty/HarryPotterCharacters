@@ -14,6 +14,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -30,10 +32,12 @@ fun CharacterDetailScreen(
     viewModel: CharacterDetailViewModel = hiltViewModel(),
 ) {
     val characterDetailState = viewModel.characterDetailState.collectAsStateWithLifecycle().value
+    val displayName = rememberSaveable { mutableStateOf("Character") }
+
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Characters Detail") },
+                title = { Text(displayName.value) },
                 navigationIcon = {
                     BackIcon(onBackClick = onBackClick)
                 }
@@ -46,9 +50,12 @@ fun CharacterDetailScreen(
                 .fillMaxSize()
         ) {
             when (characterDetailState) {
-                is UIDetailState.Success -> CharacterDetailContent(
-                    character = characterDetailState.character,
-                )
+                is UIDetailState.Success -> {
+                    displayName.value = characterDetailState.character.actor
+                    CharacterDetailContent(
+                        character = characterDetailState.character,
+                    )
+                }
                 is UIDetailState.Error -> ErrorContent()
                 is UIDetailState.Loading -> LoadingContent()
             }
@@ -78,8 +85,8 @@ private fun CharacterDetailContent(
     character: UICharacterDetail,
 ) {
     Column {
-        Text(text = "Name : " + character.name)
-        Text(text = "Actor : " + character.actor)
+        Text(text = "Character name : " + character.name)
+        Text(text = "Actor name : " + character.actor)
         Text(text = "Species : " + character.species)
         Text(text = "House : " + character.house)
         Text(text = "Date of Birth : " + character.dateOfBirth)
