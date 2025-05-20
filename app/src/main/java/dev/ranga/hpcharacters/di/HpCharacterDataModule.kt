@@ -73,13 +73,13 @@ object HpCharacterDataModule {
     }
 
     @Provides
-    fun provideRecipeDao(database: HpCharactersDatabase): HpCharacterDao {
+    fun provideDao(database: HpCharactersDatabase): HpCharacterDao {
         return database.hpCharacterDao
     }
 
     @Singleton
     @Provides
-    fun provideRecipeDatabase(@ApplicationContext context: Context): HpCharactersDatabase {
+    fun provideDatabase(@ApplicationContext context: Context): HpCharactersDatabase {
         return Room
             .databaseBuilder(
                 context = context,

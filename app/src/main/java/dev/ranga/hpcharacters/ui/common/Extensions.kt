@@ -9,7 +9,7 @@ fun String.formatDateToddMMMyy(): String {
         val inputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
         val date = LocalDate.parse(this, inputFormatter)
 
-        val outputFormatter = DateTimeFormatter.ofPattern("dd MMM yy")
+        val outputFormatter = DateTimeFormatter.ofPattern("dd MMM yyyy")
         date.format(outputFormatter)
     } catch (e: DateTimeParseException) {
         // Handle parsing error

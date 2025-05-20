@@ -16,7 +16,7 @@ The architecture is structured in these layers:
 -   **Domain Layer:**
     -   Use Cases: Define the application's specific business operations.
     -   Repositories: Define the interfaces for data access.
-    -   Models: Represent the business data (Recipe, RecipeDetail).
+    -   Models: Represent the business data.
 -   **Data Layer:**
     -   Repositories: Implement the repository interfaces to fetch data.
     -   Network: Handles communication with the API.
